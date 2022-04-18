@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UritusedData.Models
 {
+    //Mudel mille põhjal luuakse andmebaas initiate_migration "PLACEHOLDER" abiga
     public class Osalejad
     {
         public int ID { get; set; }

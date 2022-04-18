@@ -15,9 +15,9 @@ namespace ÜritusedWebApplication.Controllers
             _uritus = uritus;
         }
 
-        public IActionResult Index()
+        public IActionResult Index()//Loob avalehe ja kuvab kõik üritused
         {
-            var uritusModels = _uritus.GetAll();
+            var uritusModels = _uritus.GetAll();//Leiab kõik üritused
 
             var listResult = uritusModels
                 .Select(result => new UritusedListingModel
@@ -25,7 +25,7 @@ namespace ÜritusedWebApplication.Controllers
                     Id = result.Id,
                     Uritusenimi = result.Uritusenimi,
                     Toimumisaeg = result.Toimumisaeg.ToString("dd/MM/yyy"),
-                    toimus = DateTime.Compare(DateTime.Today, result.Toimumisaeg.Date)
+                    toimus = DateTime.Compare(DateTime.Today, result.Toimumisaeg.Date)//var ürituse toimumis aja sorteerimiseks
                 });
             var model = new UritusedIndexModel()
             {
@@ -33,10 +33,10 @@ namespace ÜritusedWebApplication.Controllers
             };
             return View(model);
         }
-        public IActionResult Osalejad(int id)
+        public IActionResult Osalejad(int id)//Kuvab ürituse lehe koos osalejatega
         {
-            var uritus = _uritus.GetById(id);
-            var model = new UritusedListingModel
+            var uritus = _uritus.GetById(id);//Leiab ürituse andmebaasist 
+            var model = new UritusedListingModel//Loob mudeli kuvamiseks
             {
                 Id = id,
                 Uritusenimi = uritus.Uritusenimi,
@@ -49,7 +49,7 @@ namespace ÜritusedWebApplication.Controllers
             return View(model);
         }
 
-        public IActionResult OsalejaDetail(int id, int IDO)
+        public IActionResult OsalejaDetail(int id, int IDO)//Kuvab osaleja info lehe
         {
 
             var osaleja = _uritus.GetOsaleja(id,IDO);
@@ -65,7 +65,7 @@ namespace ÜritusedWebApplication.Controllers
             };
             return View(model);
         }
-        public IActionResult EttevoteDetail(int id, int IDO)
+        public IActionResult EttevoteDetail(int id, int IDO)//Kuvab ettevõtte info lehe
         {
 
             var ettevote = _uritus.GetEttevote(id, IDO);
@@ -81,11 +81,11 @@ namespace ÜritusedWebApplication.Controllers
             };
             return View(model);
         }
-        public IActionResult ÜrituseLisamine()
+        public IActionResult ÜrituseLisamine()//Kuvab ürituse lisamise lehe
         {
             return View("ÜrituseLisamine");
         }
-        public IActionResult AddU(Uritused uritus)
+        public IActionResult AddU(Uritused uritus)//Kasutab ürituse lisamise service, et lisada see andmebaasi
         {
             _uritus.AddU(uritus);
             return this.RedirectToAction("Index", "Üritused");
@@ -116,7 +116,7 @@ namespace ÜritusedWebApplication.Controllers
             _uritus.AddE(id, ettevote);
             return this.RedirectToAction("Index", "Üritused");
         }
-        public IActionResult UpdateO(int id, int IDO)//Uuenda osaleja
+        public IActionResult UpdateO(int id, int IDO)//Uuendab osaleja
         {
             Osalejad osaleja = _uritus.GetOsaleja(id, IDO);
             osaleja.Eesnimi = Request.Form["eesnimi"].ToString();
@@ -127,9 +127,9 @@ namespace ÜritusedWebApplication.Controllers
             _uritus.UpdateO(osaleja);
             return this.RedirectToAction("Index", "Üritused");
         }
-        public IActionResult UpdateE(int id, int IDO)//Uuenda ettevote
+        public IActionResult UpdateE(int id, int IDO)//Uuendab ettevotte informatsiooni
         {
-            Ettevote ettevote = _uritus.GetEttevote(id, IDO);
+            Ettevote ettevote = _uritus.GetEttevote(id, IDO); 
             ettevote.EttevõtteNimi = Request.Form["ettevottenimi"].ToString();
             ettevote.EttevõtteRegistrikood = (long)Convert.ToDouble(Request.Form["registrikood"]);
             ettevote.OsalejateArv = Int32.Parse(Request.Form["osalejatearv"]);
@@ -139,17 +139,17 @@ namespace ÜritusedWebApplication.Controllers
             return this.RedirectToAction("Index", "Üritused");
         }
 
-        public IActionResult Remove(int id)
+        public IActionResult Remove(int id) //Kustutab ürituse andmebaasist
         {
             _uritus.DeleteU(id);
             return this.RedirectToAction("Index", "Üritused");
         }
-        public IActionResult RemoveE(int id, int IDO)
+        public IActionResult RemoveE(int id, int IDO) //Kustutab ettevõtte andmebaasist
         {
             _uritus.DeleteE(id, IDO);
             return this.RedirectToAction("Index", "Üritused");
         }
-        public IActionResult RemoveO(int id, int IDO)
+        public IActionResult RemoveO(int id, int IDO)//Kustutab osaleja andmebaasist
         {
             _uritus.DeleteO(id, IDO);
             return this.RedirectToAction("Index", "Üritused");

@@ -5,6 +5,7 @@ using UritusedData.Models;
 
 namespace UritusedData
 {
+    //Ühendab UritusService.cs ja ÜritusedController.cs
     public interface IUritusedInterface
     {
         IEnumerable<Uritused> GetAll();

@@ -3,6 +3,7 @@ using UritusedData.Models;
 
 namespace UritusedData
 {
+    //sessiooni andmebaas mille abil saab teha CRUD operatsioone
     public class UritusedContext : DbContext
     {
         public UritusedContext(DbContextOptions options) : base(options) { }

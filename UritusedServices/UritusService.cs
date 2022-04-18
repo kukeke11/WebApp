@@ -48,18 +48,18 @@ namespace UritusedServices
             _context.Remove(_context.Uritused.Find(id).Ettevotted.Remove(GetEttevote(id, idettevote)));
             _context.SaveChanges();
         }
-        public void UpdateO(Osalejad updateOsaleja)
+        public void UpdateO(Osalejad updateOsaleja)//Uuendab osaleja info andmebaasis
         {
             _context.Entry(updateOsaleja).State = EntityState.Modified;
             _context.SaveChanges();
         }
-        public void UpdateE(Ettevote updateEttevote)
+        public void UpdateE(Ettevote updateEttevote)//Uuendab ettevõtte info andmebaasis
         {
             _context.Entry(updateEttevote).State = EntityState.Modified;
             _context.SaveChanges();
         }
 
-        public IEnumerable<Uritused> GetAll()
+        public IEnumerable<Uritused> GetAll()//Leiab kõik üritused ja kaasab ettevõte ja osaleja listi
         {
             return _context.Uritused
                 .Include(uritus => uritus.Osalejad)
@@ -112,12 +112,12 @@ namespace UritusedServices
             return GetById(id).Ettevotted;
         }
 
-        public Osalejad GetOsaleja(int id, int idosaleja)
+        public Osalejad GetOsaleja(int id, int idosaleja)//Leiab osaleja ID põhjal
         {
             return GetById(id).Osalejad.Find(osaleja => osaleja.ID == idosaleja);
         }
 
-        public Ettevote GetEttevote(int id, int idettevote)
+        public Ettevote GetEttevote(int id, int idettevote)//Leiab ettevõtte ID põhjal
         {
             return GetById(id).Ettevotted.Find(ettevote => ettevote.ID == idettevote);
         }

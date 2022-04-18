@@ -5,6 +5,7 @@ using System.Text;
 
 namespace UritusedData.Models
 {
+    //Mudel mille põhjal luuakse andmebaas initiate_migration "PLACEHOLDER" abiga
     public class Ettevote
     {
         public int ID { get; set; }
