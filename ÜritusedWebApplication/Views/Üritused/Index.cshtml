@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Avaleht";
+}
+@model ÜritusedWebApplication.Models.Uritused.UritusedIndexModel
+
+<div class="container bg-white mt-4">
+    <div class="row py-7 p-0">
+        <div class="col bg-primary text-light text-left align-middle p-4"><h4 class="align-middle pt-5">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</h4></div>
+        <div class="col p-0"><img src="~/images/pilt.jpg" /></div>
+    </div>
+</div>
+<div class="container mt-4">
+    <div class="row text-light text-center">
+        <div class="col bg-primary mr-4"><h4>Tulevased üritused</h4></div>
+        <div class="col bg-primary"><h4>Toimunud üritused</h4></div>
+    </div>
+    <div class="row">
+        <div class="col bg-white mr-4">
+            <div class="table-responsive pt-2">
+                <table class="table-borderless pt-1">
+                    <tbody>
+                        @foreach (var uritus in Model.Uritused)
+                        {
+                            if (uritus.toimus < 0)
+                            {
+                                <tr>
+                                    <td class="col-4 mr-5">@uritus.Uritusenimi</td>
+                                    <td class="col-1 text-right">@uritus.Toimumisaeg</td>
+                                    <td class="col-3 text-right"><a class="text-decoration-none" asp-controller="Üritused" asp-action="Osalejad" asp-route-id="@uritus.Id">OSAVÕTJAD</a></td>
+                                    <td class="col-1 text-right"><a asp-controller="Üritused" asp-action="Remove" asp-route-id="@uritus.Id"><img src="~/images/remove.svg" class="img-fluid" /></a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <div class="row py-2 mb-4 mt-4">
+                <a class="pl-4 ml-1" asp-controller="Üritused" asp-action="ÜrituseLisamine"><b>Lisa üritus</b></a>
+            </div>
+        </div>
+        <div class="col bg-white">
+            <div class="table-responsive pt-2">
+                <table class="table-borderless pt-1">
+                    <tbody>
+                        @foreach (var uritus in Model.Uritused)
+                        {
+                            if (uritus.toimus >= 0)
+                            {
+                                <tr>
+                                    <td class="col-4 mr-5">@uritus.Uritusenimi</td>
+                                    <td class="col-1 text-right">@uritus.Toimumisaeg</td>
+                                    <td class="col-3 text-right"><a class="text-decoration-none" asp-controller="Üritused" asp-action="Osalejad" asp-route-id="@uritus.Id">OSAVÕTJAD</a></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@using ÜritusedWebApplication.Helpers
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ÜritusedWebApplication</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+</head>
+<body class="bg-light">
+    <div class="container bg-white shadow-lg mt-4">
+        <nav class="nav">
+            <ul class="nav col">
+                <li class="nav-item py-4 pl-0 mr-5 col-2 justify-content-lg-start m-0">
+                    <img src="~/images/logo.svg" />
+                </li>
+                <li class="nav-item py-4 col-sm-auto text-center @Html.IsActiveBG("Üritused","Index")">
+                    <a class="nav-link  text-decoration-none @Html.IsActiveText("Üritused","Index")" asp-controller="Üritused" asp-action="Index"><h7><b>AVALEHT</b></h7></a>
+                </li>
+                <li class="nav-item py-4 col-sm-auto text-center @Html.IsActiveBG("Üritused","ÜrituseLisamine")">
+                    <a class="nav-link text-decoration-none @Html.IsActiveText("Üritused","ÜrituseLisamine")" asp-controller="Üritused" asp-action="ÜrituseLisamine"><h7><b>ÜRITUSE LISAMINE</b></h7></a>
+                </li>
+                <li class="nav-item mt-1 py-2 col container-fluid text-right pr-0">
+                    <img class="align-middle" src="~/images/symbol.svg" />
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="page-content">
+        @RenderBody()
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        $('.ettevote__form').hide();
+        $('input[name="osalejaform"]').click(function (e) {
+            e.preventDefault();
+            $('.osaleja__form').show();
+            $('.ettevote__form').hide();
+        });
+
+        $('input[name="ettevoteform"]').click(function (e) {
+            e.preventDefault();
+            $('.osaleja__form').hide();
+            $('.ettevote__form').show();
+        });
+    </script>
+</body>
+</html>

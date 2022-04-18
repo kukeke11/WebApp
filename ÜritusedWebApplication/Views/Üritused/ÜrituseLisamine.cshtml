@@ -1,0 +1,53 @@
+﻿@model ÜritusedWebApplication.Models.Uritused.UrituseLisamineModel
+<div class="container bg-white mt-4">
+    <div class="row p-0 overflow-hidden">
+        <div class="col-3 h-50 bg-primary p-0 text-white text-center"><h4>Ürituse Lisamine</h4></div>
+        <div class="col-9 p-0"><img src="~/images/libled.jpg" class="p-0 card-img-overlay img-fluid" /></div>
+    </div>
+</div>
+<div class="container bg-white text-dark">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 text-primary"><h4><b>Ürituse Lisamine</b></h4></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row py-2">
+        <div class="col-3"></div>
+        <div class="col-6 form-group osaleja__form">
+            <form method="post" asp-controller="Üritused" asp-action="AddU">
+                <div class="row">
+                    <div class="col-3"><h7><b>Ürituse Nimi:</b></h7></div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" asp-for="Uritusenimi" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><h7><b>Perenimi:</b></h7></div>
+                    <div class="col-7">
+                        <input class="form-control" type="date" asp-for="Toimumisaeg" placeholder="kk/pp/aaaa" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><h7><b>Isikukood:</b></h7></div>
+                    <div class="col-7">
+                        <input class="form-control" type="text" asp-for="Koht" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3"><h7><b>Lisainfo:</b></h7></div>
+                    <div class="col-7">
+                        <textarea class="form-control" type="text" asp-for="Lisainfo" rows="5" cols="20"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-auto">
+                        <input class="btn btn-light" type="button" value="Tagasi" onclick="location.href='@Url.Action("Index","Üritused")'" />
+                    </div>
+                    <div class="col-auto pl-0">
+                        <input class="btn btn-primary" type="submit" value="Salvesta" />
+                    </div>
+                </div>
+            </form>
+            <div class="col-3"></div>
+        </div>
+    </div>
