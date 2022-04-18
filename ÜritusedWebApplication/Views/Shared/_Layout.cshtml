@@ -5,10 +5,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ÜritusedWebApplication</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/icon.css">
+    <link rel="stylesheet" href="~/css/material.indigo-pink.min.css">
+    <script defer src="~/js/material.min.js"></script>
     <link rel="stylesheet" type="text/css" href="~/css/site.css" />
 </head>
 <body class="bg-light">
@@ -33,7 +33,7 @@
     <div class="page-content">
         @RenderBody()
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="~/js/jquery.min.js"></script>
     <script>
         $('.ettevote__form').hide();
         $('input[name="osalejaform"]').click(function (e) {
